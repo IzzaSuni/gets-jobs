@@ -50,7 +50,7 @@ export default function Details() {
                   src={data?.["company_logo"]}
                   alt="company logo"
                 />
-                <a href={data?.["company_url"]}>{data?.["company_url"]}</a>
+                <a className="apply" href={data?.["company_url"]}>{data?.["company_url"]}</a>
               </div>
             </div>
           </div>
