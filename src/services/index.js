@@ -9,7 +9,7 @@ export const getJobs = async (params, page) => {
   return await customAxios({
     method: "GET",
     url: "positions.json",
-    params,
+    params: { ...params, page: page },
   })
     .then((value) => value)
     .catch((err) => err);

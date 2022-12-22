@@ -17,29 +17,37 @@ export default function JobsList() {
   const [toggle, setToggle] = useState(false);
   const [lists, setLists] = useState([]);
   const [page, setPage] = useState(1);
+  const [end, setEnd] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const handleChange = (ev) => {
     setParams({ ...params, [ev.target.name]: ev.target.value });
   };
   useEffect(() => {
-    getJobs(params).then((e) => {
-      if (
-        params?.["full_time"] === true ||
-        params?.description ||
-        params?.location
-      )
-        setIsSearching(true);
-      else if (
-        params?.["full_time"] === false &&
-        !params?.description &&
-        !params?.location
-      )
-        setIsSearching(false);
-      setLists(e.data);
-      setLoading(false);
+    getJobs(params, page).then((e) => {
+      if (e.data) {
+        if (
+          params?.["full_time"] === true ||
+          params?.description ||
+          params?.location
+        )
+          setIsSearching(true);
+        else if (
+          params?.["full_time"] === false &&
+          !params?.description &&
+          !params?.location
+        )
+          setIsSearching(false);
+        console.log(lists);
+        setLists([...lists, ...e?.data]);
+        setLoading(false);
+      } else if (!e.data) {
+        setLoading(false);
+        setEnd(true);
+      }
     });
-  }, [toggle]);
+  }, [toggle, page]);
+  console.log(lists);
 
   return (
     <>
@@ -107,6 +115,7 @@ export default function JobsList() {
           {isSearching ? `Showing ${lists.length} Job(s)` : "Jobs Lists"}
         </h3>
         {lists?.map((itm, idx) => {
+          if (itm === null) return;
           return (
             <div
               key={idx}
@@ -133,6 +142,26 @@ export default function JobsList() {
             </div>
           );
         })}
+        {end === false && (
+          <Button
+            fullWidth
+            sx={{
+              textTransform: "none",
+              background: "#222831",
+              color: "white",
+              "&:hover": {
+                background: "black",
+              },
+            }}
+            onClick={() => {
+              setPage((pages) => pages + 1);
+              setLoading(true);
+            }}
+          >
+            More Jobs
+          </Button>
+        )}
+
         {lists.length <= 0 && (
           <p style={{ textAlign: "center" }}>data kosong</p>
         )}
