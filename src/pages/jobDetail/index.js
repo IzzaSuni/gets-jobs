@@ -35,7 +35,7 @@ export default function Details() {
               <div className="detail-wording-img-el">
                 <h4 style={{ margin: "8px" }}>How to Apply?</h4>
                 <p
-                  style={{ textAlign: "left", margin: 0 }}
+                  className="apply"
                   dangerouslySetInnerHTML={{ __html: data?.["how_to_apply"] }}
                 ></p>
               </div>

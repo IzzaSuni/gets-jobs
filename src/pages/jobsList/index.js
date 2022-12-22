@@ -13,9 +13,10 @@ import Navbar from "../../components/navbar";
 import { getJobs } from "../../services";
 
 export default function JobsList() {
-  const [params, setParams] = useState({ ["full_time"]: false });
+  const [params, setParams] = useState({});
   const [toggle, setToggle] = useState(false);
   const [lists, setLists] = useState([]);
+  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const handleChange = (ev) => {
@@ -35,7 +36,6 @@ export default function JobsList() {
         !params?.location
       )
         setIsSearching(false);
-
       setLists(e.data);
       setLoading(false);
     });
@@ -59,7 +59,12 @@ export default function JobsList() {
             return (
               <div key={idx} style={{ display: "block", padding: "0 8px" }}>
                 <p style={{ margin: "4px" }}>{itm.text}</p>
-                <TextField size="small" fullWidth onChange={handleChange} name={itm.name} />
+                <TextField
+                  size="small"
+                  fullWidth
+                  onChange={handleChange}
+                  name={itm.name}
+                />
               </div>
             );
           })}
@@ -94,7 +99,6 @@ export default function JobsList() {
 
         {/*End  Search Section */}
         {/*========================== */}
-
       </div>
       {/*list Section */}
 
