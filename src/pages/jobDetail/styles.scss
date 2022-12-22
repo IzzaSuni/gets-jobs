@@ -1,0 +1,40 @@
+.detail {
+  padding: 24px;
+  &-container {
+    width: 100%;
+    padding: 24px;
+    background-color: white;
+  }
+  &-type {
+    font-size: 12px;
+    color: rgb(88, 83, 83);
+  }
+  &-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 4px 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid black;
+  }
+  &-wording {
+    display: flex;
+    &-description {
+      width: 60%;
+      padding-right: 24px;
+    }
+    &-img {
+      width: 40%;
+      padding: 16px;
+      &-el {
+        padding: 16px;
+        margin: 8px;
+        display: flex;
+        flex-direction: column;
+        background-color: #eeee;
+
+        border-radius: 16px;
+        text-align: center;
+      }
+    }
+  }
+}

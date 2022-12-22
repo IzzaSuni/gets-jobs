@@ -1,0 +1,9 @@
+*{
+    box-sizing: border-box
+    
+}
+body{
+    background-color: #eeee
+}
+@import "./pages/styles.scss";
+@import "./components/styles.scss";
